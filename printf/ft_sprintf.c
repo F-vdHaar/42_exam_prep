@@ -2,18 +2,25 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
+
+ // Write each character and update len
 void ft_putchar(char *str, int *len)
 {
     if (!str) str = "(null)";
     while (*str)
         *len += write(1, str++, 1);
 }
-void ft_putnum(long long num, int base, int *len)
+void print_in_base(long long num, int base, int *len)
 {
     char *hex = "0123456789abcdef";
-    if (num < 0) {*len += write(1, "-", 1); num = -num;}
-    if (num >= base) ft_putnum(num / base, base, len);
-    *len += write(1, &hex[num % base], 1);
+    if (num < 0) { 
+        *len += write(1, "-", 1);
+        num = -num;
+    }
+    if (num >= base) {
+        print_in_base(num / base, base, len);  // Recursive call for larger numbers
+    }
+    *len += write(1, &hex[num % base], 1);  // Write the current digit
 }
 void print_loop(const char *f,  va_list ap, int *len)
 {
@@ -23,8 +30,8 @@ void print_loop(const char *f,  va_list ap, int *len)
         {
             f++;
             if (*f == 's') ft_putchar(va_arg(ap, char *), len);
-            else if (*f == 'd') ft_putnum(va_arg(ap, int), 10, len);
-            else if (*f == 'x') ft_putnum(va_arg(ap, unsigned int), 16, len);
+            else if (*f == 'd') print_in_base(va_arg(ap, int), 10, len);
+            else if (*f == 'x') print_in_base(va_arg(ap, unsigned int), 16, len);
         }
         else
             *len += write(1, f, 1);
