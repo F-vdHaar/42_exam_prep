@@ -1,0 +1,6 @@
+First line of the file.
+Second line is here.
+
+Fourth line comes after an empty line.
+Fifth line has no newline at EOF```
+(Note: The final line intentionally has **no newline at the end** to check if your implementation still returns it.)

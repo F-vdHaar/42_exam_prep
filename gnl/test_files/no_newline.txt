@@ -1,0 +1,1 @@
+This file has no newline characters at all, it's just one giant string with no breaks and the only reason it ends is because EOF is hit

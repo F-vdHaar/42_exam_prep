@@ -1,0 +1,2 @@
+This is a really long line that exceeds any reasonable BUFFER_SIZE value unless you are completely unreasonable and set BUFFER_SIZE to some hilariously high value like 1024 or even more. It just keeps going, and going, and going, and there is no newline in sight, oh wait—here it comes finally.\n
+Another regular line.\n
